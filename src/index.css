@@ -49,3 +49,12 @@ body {
 [aria-expanded="true"] .caret {
   transform: rotate(180deg);
 }
+
+.coords{
+  border-radius: 8px;
+  margin: 2px;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-bottom: 1px;
+  background-color: red;
+}

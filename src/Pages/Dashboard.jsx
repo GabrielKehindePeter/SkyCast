@@ -20,7 +20,6 @@ const Dashboard = () => {
   // handle submit event
   function onsubmit(e) {
     e.preventDefault();
-    console.log("City:", formData.city);
 
     setLoading(true);
     fetch(
@@ -29,7 +28,8 @@ const Dashboard = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.length > 0) {
-          setCoords({ lat: data[0].lat, lon: data[0].lon });
+            console.log(data)
+          setCoords({ lat: data[0].lat, lon: data[0].lon, state:data[0].state, country:data[0].country });
         }
         setLoading(false);
       })
@@ -59,7 +59,11 @@ const Dashboard = () => {
   }, [coords]);
 
   return (
-    <>
+    <div>
+    <div>
+        <h3 className="text-danger">Welcome To SkyCast</h3>
+        <p className="text-light">A place were the weather of a location is accurately predicted. Note that this app uses API to determine the weather of a given location following the given Latitude and Longitude </p>
+    </div>
       <form className="d-flex mb-3" onSubmit={onsubmit} method="get">
         <input
           type="text"
@@ -67,29 +71,51 @@ const Dashboard = () => {
           className="form-control me-2"
           onChange={onchange}
           value={formData.city}
-          placeholder="Enter city..."
+          placeholder="Please Enter City..."
         />
-        <button className="btn btn-dark" type="submit">
+        <button className="btn btn-danger" type="submit">
           Search
         </button>
       </form>
 
-      {loading && <p>Loading...</p>}
+      {loading && <p className="text-info">Loading...</p>}
 
       {coords && (
-        <p>
-          Latitude: {coords.lat}, Longitude: {coords.lon}
-        </p>
+
+         <div className="container bg-light p-3" style={{borderRadius:'5px'}}>
+            <div className="row">
+                <div className="col-lg-6">
+                    <div className="bg-dark coords">
+                <h5 className="text-warning">{coords.lat}</h5> 
+                <p className="text-danger">Latitude for {formData.city}, {coords.state}, {coords.country}.  </p>
+                </div>
+                </div>
+                <div className="col-lg-6">
+                    <div className="bg-dark coords">
+                <h5 className="text-warning">{coords.lon}</h5> 
+                <p className="text-danger">Logitude for {formData.city}, {coords.state}  {coords.country}.</p>
+                </div>
+                </div>
+               
+               <div className="col-lg-12">
+               <div className="bg-dark coords">
+                {weather && (
+                        <div className="text-light">
+                        <h3>Weather in {weather.name}</h3>
+                        <p>🌡 Temp: {weather.main.temp} °C</p>
+                        <p>☁️ Condition: {weather.weather[0].description}</p>
+                        </div>
+                    )}
+                </div>
+               </div>
+                
+            </div>
+
+         
+         </div>
       )}
 
-      {weather && (
-        <div>
-          <h3>Weather in {weather.name}</h3>
-          <p>🌡 Temp: {weather.main.temp} °C</p>
-          <p>☁️ Condition: {weather.weather[0].description}</p>
-        </div>
-      )}
-    </>
+    </div>
   );
 };
 

@@ -16,7 +16,7 @@ const Navbar = () => {
         </div> --> */}
         <div className="ms-auto dropdown">
           <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            User
+            Gabriel
           </button>
           <ul className="dropdown-menu">
             <li><a className="dropdown-item" href="#">Action</a></li>
