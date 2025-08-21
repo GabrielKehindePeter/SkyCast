@@ -4,8 +4,8 @@ function WeatherApp() {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const lat = 5.469664;
-  const lon = 5.905224;
+  const lat = 6.4694716;
+  const lon = 3.5623861;
   const key = "ba94dc3eec6572ab421b192e6e4e4b0b";
 
   useEffect(() => {
