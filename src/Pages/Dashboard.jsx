@@ -23,7 +23,7 @@ const Dashboard = () => {
 
     setLoading(true);
     fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${formData.city},ng&limit=1&appid=${key}`
+      `http://api.openweathermap.org/geo/1.0/direct?q=${formData.city},&limit=1&appid=${key}`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -50,6 +50,7 @@ const Dashboard = () => {
       .then((response) => response.json())
       .then((data) => {
         setWeather(data);
+        console.log(weather)
         setLoading(false);
       })
       .catch((err) => {
@@ -78,7 +79,10 @@ const Dashboard = () => {
         </button>
       </form>
 
-      {loading && <p className="text-info">Loading...</p>}
+      {loading && <button className="btn btn-dark" type="button" disabled>
+  <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
+  <span role="status"> Loading weather information......................</span>
+</button>}
 
       {coords && (
 

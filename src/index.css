@@ -58,3 +58,9 @@ body {
   padding-bottom: 1px;
   background-color: red;
 }
+
+.footer{
+  margin-top: 60px;
+  padding: 4px;
+  background-color: lightgray;
+}

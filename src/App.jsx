@@ -5,6 +5,7 @@ import Profile from "./Pages/Profile";
 import Logout from "./Pages/Logout";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Weather from "./Pages/Users";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/weather" element ={<Weather />} />
         </Routes>
       </div>
+      <Footer/>
       </div>
     </BrowserRouter>
   );
