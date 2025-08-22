@@ -5,6 +5,7 @@ const Dashboard = () => {
   const [coords, setCoords] = useState(null); // lat & lon
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const key = "ba94dc3eec6572ab421b192e6e4e4b0b";
 
@@ -35,6 +36,7 @@ const Dashboard = () => {
       })
       .catch((err) => {
         console.error("Error fetching location:", err);
+        setError(true)
         setLoading(false);
       });
   }
@@ -55,6 +57,7 @@ const Dashboard = () => {
       })
       .catch((err) => {
         console.error("Error fetching weather:", err);
+        setError(true);
         setLoading(false);
       });
   }, [coords]);
@@ -83,6 +86,7 @@ const Dashboard = () => {
   <span className="spinner-border spinner-border-sm" aria-hidden="true"></span>
   <span role="status"> Loading weather information......................</span>
 </button>}
+{error && <div className="alert alert-danger">Sorry Weather report could not be generated, please check your internet connection and try again.</div>}
 
       {coords && (
 
@@ -106,7 +110,7 @@ const Dashboard = () => {
                 {weather && (
                         <div className="text-light">
                         <h3>Weather in {weather.name}</h3>
-                        <p>🌡 Temp: {weather.main.temp} °C</p>
+                        <p>🌡 Temperature: {weather.main.temp} °C</p>
                         <p>☁️ Condition: {weather.weather[0].description}</p>
                         </div>
                     )}
